@@ -19,21 +19,13 @@ namespace Teklican.API.Controllers
         [HttpPost("register")]
         public IActionResult Register(RegisterRequest request)
         {
-            var authResult = _authenticationService.Register(
-                request.FirstName, 
+            AuthenticationResult authResult = _authenticationService.Register(
+                request.FirstName,
                 request.LastName,
-                request.Email, 
+                request.Email,
                 request.Password);
 
-            var response = new AuthenticationResponse(
-                authResult.User.Id,
-                authResult.User.FirstName,
-                authResult.User.LastName,
-                authResult.User.Email,
-                authResult.Token
-                );
-
-            return Ok(response);
+            return Ok(MapAuthResult(authResult));
         }
 
         [HttpPost("login")]
@@ -43,15 +35,19 @@ namespace Teklican.API.Controllers
                request.Email,
                request.Password);
 
-            var response = new AuthenticationResponse(
-                authResult.User.Id,
-                authResult.User.FirstName,
-                authResult.User.LastName,
-                authResult.User.Email,
-                authResult.Token
-                );
-
-            return Ok(response);
+            return Ok(MapAuthResult(authResult));
         }
+
+        private static AuthenticationResponse MapAuthResult(AuthenticationResult authResult)
+        {
+            return new AuthenticationResponse(
+                            authResult.User.Id,
+                            authResult.User.FirstName,
+                            authResult.User.LastName,
+                            authResult.User.Email,
+                            authResult.Token
+                            );
+        }
+
     }
 }

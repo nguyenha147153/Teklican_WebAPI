@@ -1,5 +1,7 @@
 ﻿using Teklican.Application.Common.Interfaces.Authentication;
 using Teklican.Application.Common.Interfaces.Persistence;
+using Teklican.Domain.Common.Exceptions;
+using Teklican.Domain.Common.Exceptions.Authentication;
 using Teklican.Domain.Entities;
 
 namespace Teklican.Application.Services.Authentication
@@ -19,7 +21,8 @@ namespace Teklican.Application.Services.Authentication
             //1. Kiem tra user ko ton tai
             if(_userRepository.GetUserByEmail(email) is not null)
             {
-                throw new Exception("User is exist");
+                throw new DuplicateEmailException();
+              /*  return Errors.User.DuplicateEmail;*/
             }
             //2. Tao user
             var user = new User()
@@ -44,12 +47,12 @@ namespace Teklican.Application.Services.Authentication
             //1.Kiem tra user ton tai
             if(_userRepository.GetUserByEmail(email) is not User user)
             {
-                throw new Exception("User does not exist");
+                throw new EmaiInvalidException();
             }
             //2.Kiem tra password
             if(user.Password != password) 
             {
-                throw new Exception("Invalid password");
+                throw new PasswordInvalidException();
             }
 
             //3.Tao JWT Token
