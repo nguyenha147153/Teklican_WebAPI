@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Teklican.Application.Services.Authentication;
+using MediatR;
 
 namespace Teklican.Application
 {
@@ -7,7 +7,7 @@ namespace Teklican.Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddMediatR(typeof(DependencyInjection).Assembly);
 
             return services;
         }

@@ -1,6 +1,6 @@
 ﻿using Teklican.Domain.Entities;
 
-namespace Teklican.Application.Services.Authentication
+namespace Teklican.Application.Authentication.Common
 {
     public record AuthenticationResult(
         User User,
