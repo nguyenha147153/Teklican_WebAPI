@@ -1,17 +1,12 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Teklican.Application.Authentication.Common;
 using Teklican.Application.Common.Interfaces.Authentication;
 using Teklican.Application.Common.Interfaces.Persistence;
-using Teklican.Domain.Common.Exceptions.Authentication;
 using Teklican.Domain.Common.Exceptions;
+using Teklican.Domain.Common.Exceptions.Authentication;
 using Teklican.Domain.Entities;
-using Teklican.Application.Authentication.Common;
 
-namespace Teklican.Application.Authentication.Queries
+namespace Teklican.Application.Authentication.Queries.Login
 {
     public class LoginQueryHandler : IRequestHandler<LoginQuery, AuthenticationResult>
     {
@@ -26,6 +21,8 @@ namespace Teklican.Application.Authentication.Queries
 
         public async Task<AuthenticationResult> Handle(LoginQuery query, CancellationToken cancellationToken)
         {
+            await Task.CompletedTask;
+
             //1.Kiem tra user ton tai
             if (_userRepository.GetUserByEmail(query.Email) is not User user)
             {

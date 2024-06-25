@@ -1,11 +1,9 @@
 ﻿using MediatR;
 using Teklican.Application.Authentication.Common;
 
-namespace Teklican.Application.Authentication.Commands.Register
+namespace Teklican.Application.Authentication.Queries.Login
 {
-    public record RegisterCommand(
-        string FirstName,
-        string LastName,
+    public record LoginQuery(
         string Email,
         string Password) : IRequest<AuthenticationResult>;
 }

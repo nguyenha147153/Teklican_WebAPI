@@ -1,9 +1,4 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Teklican.Application.Authentication.Common;
 using Teklican.Application.Common.Interfaces.Authentication;
 using Teklican.Application.Common.Interfaces.Persistence;
@@ -25,6 +20,8 @@ namespace Teklican.Application.Authentication.Commands.Register
 
         public async Task<AuthenticationResult> Handle(RegisterCommand command, CancellationToken cancellationToken)
         {
+            await Task.CompletedTask;
+
             //1. Kiem tra user ko ton tai
             if (_userRepository.GetUserByEmail(command.Email) is not null)
             {

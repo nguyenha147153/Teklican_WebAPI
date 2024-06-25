@@ -1,6 +1,7 @@
-﻿
-using System.Net;
-using Teklican.Contracts.Errors;
+﻿using System.Net;
+using System.Text.Json;
+using Teklican.Application.Exceptions;
+using Teklican.Application.Wrapper;
 using Teklican.Domain.Common.Exceptions;
 using Teklican.Domain.Common.Exceptions.Authentication;
 
@@ -31,6 +32,8 @@ namespace Teklican.API.Middleware
         private static Task HandleException(HttpContext context, Exception ex)
         {
             int statusCode = (int)HttpStatusCode.InternalServerError;
+            var responseModel = new ResponseException<string>() { Succeeded = false, Message = ex?.Message};
+
             switch (ex)
             {
                 case BadRequestException _:
@@ -51,25 +54,17 @@ namespace Teklican.API.Middleware
                 case PasswordInvalidException _:
                     statusCode = (int)StatusCodes.Status409Conflict;
                     break;
+                case ValidationException e:
+                    statusCode = (int)StatusCodes.Status400BadRequest;
+                    responseModel.Errors = e.Errors;
+                    break;
             }
 
-
-            var errorResponse = new ErrorResponse
-            {
-                StatusCode = statusCode,
-                Message = ex.Message,
-            };
+            responseModel.StatusCode = statusCode;
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = statusCode;
-            return context.Response.WriteAsync(errorResponse.ToString());
-        }
-    }
-
-    public static class ExceptionMiddlewareExtension
-    {
-        public static void ConfigureExceptionMiddleware(this IApplicationBuilder app)
-        {
-            app.UseMiddleware<ExceptionMiddleware>();
+            var result = JsonSerializer.Serialize(responseModel);
+            return context.Response.WriteAsync(result);
         }
     }
 }
