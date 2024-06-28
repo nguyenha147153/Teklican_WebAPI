@@ -11,7 +11,6 @@ namespace Teklican.API.Controllers
 {
     [Route("auth")]
     [ApiController]
-    [Authorize]
     public class AuthenticationController : ControllerBase
     {
         private readonly ISender _mediator;

@@ -1,16 +1,11 @@
 ﻿using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 using Teklican.Application.Common.Interfaces.Authentication;
 using Teklican.Application.Common.Interfaces.Services;
-using Teklican.Domain.Entities;
+using Teklican.Domain.Users;
 
 namespace Teklican.Infrastructure.Authentication
 {

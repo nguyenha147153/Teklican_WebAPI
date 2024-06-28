@@ -4,7 +4,7 @@ using Teklican.Application.Common.Interfaces.Authentication;
 using Teklican.Application.Common.Interfaces.Persistence;
 using Teklican.Domain.Common.Exceptions;
 using Teklican.Domain.Common.Exceptions.Authentication;
-using Teklican.Domain.Entities;
+using Teklican.Domain.Users;
 
 namespace Teklican.Application.Authentication.Queries.Login
 {

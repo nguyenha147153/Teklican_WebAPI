@@ -3,7 +3,7 @@ using Teklican.Application.Authentication.Common;
 using Teklican.Application.Common.Interfaces.Authentication;
 using Teklican.Application.Common.Interfaces.Persistence;
 using Teklican.Domain.Common.Exceptions.Authentication;
-using Teklican.Domain.Entities;
+using Teklican.Domain.Users;
 
 namespace Teklican.Application.Authentication.Commands.Register
 {
@@ -29,13 +29,11 @@ namespace Teklican.Application.Authentication.Commands.Register
                 /*  return Errors.User.DuplicateEmail;*/
             }
             //2. Tao user
-            var user = new User()
-            {
-                FirstName = command.FirstName,
-                LastName = command.LastName,
-                Email = command.Email,
-                Password = command.Password
-            };
+            var user = User.Create(
+                command.FirstName,
+                command.LastName,
+                command.Email,
+                command.Password);
 
             _userRepository.Add(user);
 

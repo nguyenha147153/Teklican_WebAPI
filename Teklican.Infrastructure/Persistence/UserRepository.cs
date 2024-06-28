@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Teklican.Application.Common.Interfaces.Persistence;
-using Teklican.Domain.Entities;
+﻿using Teklican.Application.Common.Interfaces.Persistence;
+using Teklican.Domain.Users;
 
 namespace Teklican.Infrastructure.Persistence
 {
