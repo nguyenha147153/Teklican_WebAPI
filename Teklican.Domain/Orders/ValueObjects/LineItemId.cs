@@ -2,25 +2,25 @@
 
 namespace Teklican.Domain.Orders.ValueObjects
 {
-    public sealed class OrderId : ValueObject
+    public sealed class LineItemId : ValueObject
     {
         public Guid Value { get; }
-        public OrderId()
+        public LineItemId()
         {
         }
-        public OrderId(Guid value)
+        public LineItemId(Guid value)
         {
             Value = value;
         }
 
-        public static OrderId CreateUnique()
+        public static LineItemId CreateUnique()
         {
-            return new OrderId(Guid.NewGuid());
+            return new LineItemId(Guid.NewGuid());
         }
 
-        public static OrderId Create(Guid id)
+        public static LineItemId Create(Guid id)
         {
-            return new OrderId(id);
+            return new LineItemId(id);
         }
 
         public override IEnumerable<object> GetEqualityComponents()

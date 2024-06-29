@@ -10,5 +10,7 @@ namespace Teklican.Contracts.Authentication
         string FirstName, 
         string LastName, 
         string Email, 
-        string Password);
+        string Password,
+        string Phone,
+        string Address);
 }

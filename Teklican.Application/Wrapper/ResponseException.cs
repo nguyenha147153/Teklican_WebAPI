@@ -11,7 +11,7 @@ namespace Teklican.Application.Wrapper
         public ResponseException()
         {
         }
-        public ResponseException(T data, string message = null)
+        public ResponseException(T data, string message)
         {
             Succeeded = true;
             Message = message;
@@ -23,8 +23,8 @@ namespace Teklican.Application.Wrapper
             Message = message;
         }
         public bool Succeeded { get; set; }
-        public string Message { get; set; }
-        public List<string> Errors { get; set; }
+        public string Message { get; set; } = null!;
+        public List<string> Errors { get; set; } = null!;
         public T Data { get; set; }
         public int StatusCode { get; set; }
     }

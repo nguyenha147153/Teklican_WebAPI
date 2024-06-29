@@ -10,9 +10,9 @@ namespace Teklican.Application.Authentication.Commands.Register
     public class RegisterCommandHandler : IRequestHandler<RegisterCommand, AuthenticationResult>
     {
         private readonly IJwtTokenGenerator _jwtTokenGenerator;
-        private readonly IUserRepository _userRepository;
+        private readonly IAccountRepository _userRepository;
 
-        public RegisterCommandHandler(IJwtTokenGenerator jwtTokenGenerator, IUserRepository userRepository)
+        public RegisterCommandHandler(IJwtTokenGenerator jwtTokenGenerator, IAccountRepository userRepository)
         {
             _jwtTokenGenerator = jwtTokenGenerator;
             _userRepository = userRepository;
@@ -29,11 +29,13 @@ namespace Teklican.Application.Authentication.Commands.Register
                 /*  return Errors.User.DuplicateEmail;*/
             }
             //2. Tao user
-            var user = User.Create(
+            var user = Account.Create(
                 command.FirstName,
                 command.LastName,
                 command.Email,
-                command.Password);
+                command.Password,
+                command.Phone,
+                command.Address);
 
             _userRepository.Add(user);
 

@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Teklican.API", "Teklican.API\Teklican.API.csproj", "{3CBC183B-3314-4C18-8EB6-D6AD510FF969}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Teklican.Application", "Teklican.Application\Teklican.Application.csproj", "{4C082211-135E-42C6-A091-A3DAE8E0184A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Teklican.Application", "Teklican.Application\Teklican.Application.csproj", "{4C082211-135E-42C6-A091-A3DAE8E0184A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Teklican.Infrastructure", "Teklican.Infrastructure\Teklican.Infrastructure.csproj", "{9E80BBD8-DB23-4A25-BDDF-D6E8DC736E21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Teklican.Infrastructure", "Teklican.Infrastructure\Teklican.Infrastructure.csproj", "{9E80BBD8-DB23-4A25-BDDF-D6E8DC736E21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Teklican.Domain", "Teklican.Domain\Teklican.Domain.csproj", "{603BBD10-B058-49B0-A2CC-2CE9B3FCFAFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Teklican.Domain", "Teklican.Domain\Teklican.Domain.csproj", "{603BBD10-B058-49B0-A2CC-2CE9B3FCFAFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Teklican.Contracts", "Teklican.Contract\Teklican.Contracts.csproj", "{417E5466-7228-4BED-8A56-DF46C499400E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Teklican.Contracts", "Teklican.Contract\Teklican.Contracts.csproj", "{417E5466-7228-4BED-8A56-DF46C499400E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Teklican.API", "Teklican.API\Teklican.API.csproj", "{42E1FF7B-728B-4B50-982E-ED9B44D20585}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3CBC183B-3314-4C18-8EB6-D6AD510FF969}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3CBC183B-3314-4C18-8EB6-D6AD510FF969}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3CBC183B-3314-4C18-8EB6-D6AD510FF969}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3CBC183B-3314-4C18-8EB6-D6AD510FF969}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4C082211-135E-42C6-A091-A3DAE8E0184A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4C082211-135E-42C6-A091-A3DAE8E0184A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C082211-135E-42C6-A091-A3DAE8E0184A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{417E5466-7228-4BED-8A56-DF46C499400E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{417E5466-7228-4BED-8A56-DF46C499400E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{417E5466-7228-4BED-8A56-DF46C499400E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42E1FF7B-728B-4B50-982E-ED9B44D20585}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42E1FF7B-728B-4B50-982E-ED9B44D20585}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42E1FF7B-728B-4B50-982E-ED9B44D20585}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42E1FF7B-728B-4B50-982E-ED9B44D20585}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

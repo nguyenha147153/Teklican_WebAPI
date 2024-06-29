@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Teklican.Domain.Models
+﻿namespace Teklican.Domain.Models
 {
     public abstract class Entity<TId> : IEquatable<Entity<TId>>
         where TId : notnull
     {
-        public TId Id { get; protected set;}
+        public TId Id { get; protected set; } = default!;
 
         protected Entity(TId id) 
         {
@@ -39,6 +33,11 @@ namespace Teklican.Domain.Models
         public override int GetHashCode()
         {
             return Id.GetHashCode();
+        }
+
+        protected Entity()
+        {
+
         }
     }
 }

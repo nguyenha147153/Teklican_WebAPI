@@ -7,5 +7,7 @@ namespace Teklican.Application.Authentication.Commands.Register
         string FirstName,
         string LastName,
         string Email,
-        string Password) : IRequest<AuthenticationResult>;
+        string Password,
+        string Phone,
+        string Address) : IRequest<AuthenticationResult>;
 }

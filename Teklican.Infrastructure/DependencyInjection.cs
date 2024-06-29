@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -9,6 +10,7 @@ using Teklican.Application.Common.Interfaces.Persistence;
 using Teklican.Application.Common.Interfaces.Services;
 using Teklican.Infrastructure.Authentication;
 using Teklican.Infrastructure.Persistence;
+using Teklican.Infrastructure.Persistence.Repositories;
 using Teklican.Infrastructure.Services;
 
 namespace Teklican.Infrastructure
@@ -19,14 +21,29 @@ namespace Teklican.Infrastructure
             this IServiceCollection services, 
             ConfigurationManager configuration)
         {
-            services.AddAuth(configuration);
+
+
+            services
+                .AddAuth(configuration)
+                .AddPersistance(configuration);
 
             services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
 
-            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }
+
+        public static IServiceCollection AddPersistance(
+            this IServiceCollection services,
+            ConfigurationManager configuration)
+        {
+            services.AddDbContext<TeklicanDbContext>();
+
+            services.AddScoped<IAccountRepository, AccountRepository>();
+
+            return services;
+        }
+
 
         public static IServiceCollection AddAuth(
             this IServiceCollection services,

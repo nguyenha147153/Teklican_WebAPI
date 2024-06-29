@@ -11,12 +11,12 @@ namespace Teklican.Application.Authentication.Queries.Login
     public class LoginQueryHandler : IRequestHandler<LoginQuery, AuthenticationResult>
     {
         private readonly IJwtTokenGenerator _jwtTokenGenerator;
-        private readonly IUserRepository _userRepository;
+        private readonly IAccountRepository _accountRepository;
 
-        public LoginQueryHandler(IJwtTokenGenerator jwtTokenGenerator, IUserRepository userRepository)
+        public LoginQueryHandler(IJwtTokenGenerator jwtTokenGenerator, IAccountRepository accountRepository)
         {
             _jwtTokenGenerator = jwtTokenGenerator;
-            _userRepository = userRepository;
+            _accountRepository = accountRepository;
         }
 
         public async Task<AuthenticationResult> Handle(LoginQuery query, CancellationToken cancellationToken)
@@ -24,7 +24,7 @@ namespace Teklican.Application.Authentication.Queries.Login
             await Task.CompletedTask;
 
             //1.Kiem tra user ton tai
-            if (_userRepository.GetUserByEmail(query.Email) is not User user)
+            if (_accountRepository.GetUserByEmail(query.Email) is not Account user)
             {
                 throw new EmaiInvalidException();
             }

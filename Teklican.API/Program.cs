@@ -3,6 +3,7 @@ using Teklican.API.Extentions;
 using Teklican.Application;
 using Teklican.Infrastructure;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services

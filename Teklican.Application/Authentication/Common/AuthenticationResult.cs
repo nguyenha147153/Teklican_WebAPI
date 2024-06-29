@@ -3,6 +3,6 @@
 namespace Teklican.Application.Authentication.Common
 {
     public record AuthenticationResult(
-        User User,
+        Account User,
         string Token);
 }
