@@ -31,7 +31,7 @@ namespace Teklican.Infrastructure.Persistence
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=MSI;Initial Catalog=Teklican_WebAPI;Integrated Security=True;Trust Server Certificate=True");
+                optionsBuilder.UseSqlServer("Server=192.168.1.39,1434;Database=Teklican_WebAPI;User Id=sa;Password=123456;TrustServerCertificate=True;");
             }
         }
 
