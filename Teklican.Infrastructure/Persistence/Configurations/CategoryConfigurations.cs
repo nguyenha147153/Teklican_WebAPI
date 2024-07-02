@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Teklican.Domain.Categories;
-using Teklican.Domain.Categories.ValueObjects;
 
 namespace Teklican.Infrastructure.Persistence.Configurations
 {
@@ -21,8 +20,8 @@ namespace Teklican.Infrastructure.Persistence.Configurations
             builder.Property(c => c.Id)
                 .ValueGeneratedNever()
                 .HasConversion(
-                    c => c.Value,
-                    value => CategoryId.Create(value));
+                    categoryId => categoryId.Value,
+                    value => new CategoryId(value));
 
             builder.Property(c => c.Name).HasMaxLength(50);
         }

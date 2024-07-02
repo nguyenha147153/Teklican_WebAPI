@@ -1,4 +1,4 @@
-﻿using Teklican.Domain.Categories.ValueObjects;
+﻿using Teklican.Domain.Categories;
 using Teklican.Domain.Models;
 using Teklican.Domain.Products.ValueObjects;
 
@@ -11,7 +11,7 @@ namespace Teklican.Domain.Products
         public Money Price { get; private set; } = null!;
         public Sku Sku { get; private set; } = null!;
         public string? Status { get; private set; }
-        public CategoryId CategoryId { get; private set; } = null!;
+        public CategoryId CategoryId { get; private set; }
         public string? ImagePath {  get; private set; }
         public int Tax {  get; private set; }
         public double OldPrice { get; private set; }
@@ -50,7 +50,7 @@ namespace Teklican.Domain.Products
             double oldPrice)
         {
             return new(
-                ProductId.CreateUnique(),
+                new ProductId(Guid.NewGuid()),
                 name,
                 decription,
                 price,

@@ -1,23 +1,23 @@
-﻿using Teklican.Domain.Models;
-using Teklican.Domain.Roles.ValueObjects;
-
-namespace Teklican.Domain.Roles
+﻿namespace Teklican.Domain.Roles
 {
-    public sealed class Role : Entity<RoleId>
-    {
-        public Role() 
-        { 
-        }
+    public sealed class Role
+    {        
+        public RoleId Id { get; set; } = null!;
         public string Name { get; private set; } = null!;
 
-        public Role(RoleId roleId, string name) : base(roleId)
+        public Role(RoleId roleId, string name)
         {
+            Id = roleId;
             Name = name;
         }
 
-        public static Role Create(string name)
+        public static Role Create(RoleId roleId,string name)
         {
-            return new(RoleId.CreateUnique(), name);
+            return new(roleId,name);
+        }
+
+        public Role()
+        {
         }
     }
 }

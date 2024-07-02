@@ -1,20 +1,15 @@
-﻿using Teklican.Domain.Models;
+﻿using Teklican.Domain.Accounts;
 using Teklican.Domain.Orders.Entities;
-using Teklican.Domain.Orders.ValueObjects;
 using Teklican.Domain.Products;
-using Teklican.Domain.Users;
-using Teklican.Domain.Users.ValueObjects;
+using Teklican.Domain.Products.ValueObjects;
 
 namespace Teklican.Domain.Orders
 {
-    public sealed class Order : AggregateRoot<OrderId>
+    public sealed class Order 
     {
-        private Order()
-        {
-        }
-
         private readonly HashSet<LineItem> _lineItems = new();
-        public AccountId AccountId { get; private set; } = null!;
+        public OrderId Id { get; private set; } = null!;
+        public AccountId AccountId { get; private set; }
         public decimal Total { get; private set; }
         public DateTime CreatedDate { get; private set; }
 
@@ -22,29 +17,32 @@ namespace Teklican.Domain.Orders
 
         public Order(
             OrderId orderId,
-            AccountId accountId) : base(orderId)
+            AccountId accountId)
         {
+            Id = orderId;
             AccountId = accountId;
         }
 
-        public static Order Create(Account account)
+        public static Order Create(AccountId accountId)
         {
             return new(
-                OrderId.CreateUnique(),
-                account.Id);
+                new OrderId(Guid.NewGuid()),
+                accountId);
         }
         
-        public void Add(Product product)
+        public void Add(ProductId productId, Money price)
         {
             var lineItem = new LineItem(
-                LineItemId.CreateUnique(),
+                new LineItemId(Guid.NewGuid()),
                 Id,
-                product.Id,
-                product.Price
+                productId,
+                price
                 );
 
             _lineItems.Add(lineItem);
-
+        }
+        private Order()
+        {
         }
     }
 }

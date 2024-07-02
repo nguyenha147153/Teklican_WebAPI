@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Teklican.Domain.Orders.Entities;
-using Teklican.Domain.Orders.ValueObjects;
 using Teklican.Domain.Products;
 
 namespace Teklican.Infrastructure.Persistence.Configurations
@@ -23,11 +22,11 @@ namespace Teklican.Infrastructure.Persistence.Configurations
                 .ValueGeneratedNever()
                 .HasConversion(
                     lineItem => lineItem.Value,
-                    value => LineItemId.Create(value));
+                    value => new LineItemId(value));
 
             builder.HasOne<Product>()
-                .WithMany()
-                .HasForeignKey(li => li.ProductId);
+               .WithMany()
+               .HasForeignKey(li => li.ProductId);
 
             builder.OwnsOne(li => li.Price);
 

@@ -1,23 +1,22 @@
-﻿using Teklican.Domain.Categories.ValueObjects;
-using Teklican.Domain.Models;
-
-namespace Teklican.Domain.Categories
+﻿namespace Teklican.Domain.Categories
 {
-    public sealed class Category : Entity<CategoryId>
+    public sealed class Category 
     {
-        public Category()
-        {
-        }
-        public string Name { get; private set; } = null!;
+        public CategoryId Id { get; private set; }
+        public string Name { get; private set; } = string.Empty;
 
-        public Category(CategoryId categoryId, string name) : base(categoryId)
+        public Category(CategoryId id, string name)
         {
+            Id = id;
             Name = name;
         }
 
-        public static Category Create(string name)
+        public static Category Create(CategoryId category, string name)
         {
-            return new(CategoryId.CreateUnique(), name);
+            return new( category, name);
+        }
+        public Category()
+        {
         }
     }
 }

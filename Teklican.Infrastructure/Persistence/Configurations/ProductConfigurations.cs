@@ -22,13 +22,13 @@ namespace Teklican.Infrastructure.Persistence.Configurations
             builder.Property(p => p.Id)
                 .ValueGeneratedNever()
                 .HasConversion(
-                    id => id.Value,
-                    value => ProductId.Create(value));
+                    productId => productId.Value,
+                    value => new ProductId(value));
 
             builder.HasOne<Category>()
-                .WithMany()
-                .HasForeignKey(c=>c.CategoryId)
-                .IsRequired();
+               .WithMany()
+               .HasForeignKey(c => c.CategoryId)
+               .IsRequired();
 
             builder.Property(p => p.Sku)
                 .HasConversion(

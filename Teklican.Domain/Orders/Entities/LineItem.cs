@@ -1,15 +1,12 @@
-﻿using Teklican.Domain.Models;
-using Teklican.Domain.Orders.ValueObjects;
+﻿using Teklican.Domain.Products;
 using Teklican.Domain.Products.ValueObjects;
 
 namespace Teklican.Domain.Orders.Entities
 {
-    public sealed class LineItem : Entity<LineItemId>
+    public sealed class LineItem
     {
-        private LineItem()
-        {
-        }
         /* private readonly List<ProductId> _products = new();*/
+        public LineItemId Id { get; set; } = null!;
         public OrderId OrderId { get; private set; } = null!;
         public ProductId ProductId { get; private set; } = null!;
         public Money Price { get; private set; } = null!;
@@ -25,14 +22,18 @@ namespace Teklican.Domain.Orders.Entities
             Money price
             /*int quantity,
             decimal subTotal,
-            string status*/) : base(lineItemId)
+            string status*/)
         {
+            Id = lineItemId;
             OrderId = orderId;
             ProductId = productId;
             Price = price;
             /*Quantity = quantity;
             SubTotal = subTotal;
             Status = status;*/
+        }
+        private LineItem()
+        {
         }
     }
 }

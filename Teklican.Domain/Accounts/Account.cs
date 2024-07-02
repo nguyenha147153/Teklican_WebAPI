@@ -1,15 +1,11 @@
-﻿using Teklican.Domain.Models;
-using Teklican.Domain.Roles.ValueObjects;
-using Teklican.Domain.Users.ValueObjects;
+﻿using Teklican.Domain.Roles;
 
-namespace Teklican.Domain.Users
+namespace Teklican.Domain.Accounts
 {
-    public sealed class Account : AggregateRoot<AccountId>
+    public sealed class Account 
     {
-        private Account()
-        {
-        }
-        public RoleId RoleId { get; set; } = null!;
+        public AccountId Id { get; private set; }
+        public RoleId RoleId { get; private set; } = null!;
         public string FirstName { get; private set; } = null!;
         public string LastName { get; private set; } = null!;
         public string Email { get; private set; } = null!;
@@ -17,14 +13,17 @@ namespace Teklican.Domain.Users
         public string Phone { get; private set; } = string.Empty;
         public string Address { get; private set; } = string.Empty;
         public Account(
-            AccountId accountId,
+            AccountId id,
+            RoleId roleId,
             string firstName,
             string lastName,
             string email,
             string password,
             string phone,
-            string address) : base(accountId)
+            string address)
         {
+            Id = id;
+            RoleId = roleId;
             FirstName = firstName;
             LastName = lastName;
             Email = email;
@@ -34,6 +33,7 @@ namespace Teklican.Domain.Users
         }
 
         public static Account Create(
+            RoleId roleId,
             string firstName,
             string lastName,
             string email,
@@ -42,13 +42,17 @@ namespace Teklican.Domain.Users
             string address)
         {
             return new(
-                AccountId.CreateUnique(),
+                new AccountId(Guid.NewGuid()),
+                roleId,
                 firstName,
                 lastName,
                 email,
                 password,
                 phone,
                 address);
+        }
+        private Account()
+        {
         }
     }
 }

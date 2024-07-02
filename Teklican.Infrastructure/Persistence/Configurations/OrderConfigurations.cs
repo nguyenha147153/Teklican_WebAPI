@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Teklican.Domain.Accounts;
 using Teklican.Domain.Orders;
-using Teklican.Domain.Orders.ValueObjects;
-using Teklican.Domain.Users;
 
 namespace Teklican.Infrastructure.Persistence.Configurations
 {
@@ -23,11 +22,11 @@ namespace Teklican.Infrastructure.Persistence.Configurations
                 .ValueGeneratedNever()
                 .HasConversion(
                     order => order.Value,
-                    value => OrderId.Create(value));
+                    value => new OrderId(value));
 
             builder.HasOne<Account>()
                 .WithMany()
-                .HasForeignKey( o => o.AccountId)
+                .HasForeignKey(o => o.AccountId)
                 .IsRequired();
 
             builder.HasMany(o => o.LineItems)

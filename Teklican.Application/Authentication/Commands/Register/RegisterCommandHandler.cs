@@ -2,8 +2,9 @@
 using Teklican.Application.Authentication.Common;
 using Teklican.Application.Common.Interfaces.Authentication;
 using Teklican.Application.Common.Interfaces.Persistence;
+using Teklican.Domain.Accounts;
 using Teklican.Domain.Common.Exceptions.Authentication;
-using Teklican.Domain.Users;
+using Teklican.Domain.Roles;
 
 namespace Teklican.Application.Authentication.Commands.Register
 {
@@ -30,6 +31,7 @@ namespace Teklican.Application.Authentication.Commands.Register
             }
             //2. Tao user
             var user = Account.Create(
+                new RoleId(new Guid("00000000-0000-0000-0000-000000000000")),
                 command.FirstName,
                 command.LastName,
                 command.Email,

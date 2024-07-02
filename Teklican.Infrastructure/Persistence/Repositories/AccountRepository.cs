@@ -1,5 +1,5 @@
 ﻿using Teklican.Application.Common.Interfaces.Persistence;
-using Teklican.Domain.Users;
+using Teklican.Domain.Accounts;
 
 namespace Teklican.Infrastructure.Persistence.Repositories
 {

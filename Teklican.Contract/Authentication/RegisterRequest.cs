@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace Teklican.Contracts.Authentication
 {
     public record RegisterRequest(
+        int RoleId,
         string FirstName, 
         string LastName, 
         string Email, 

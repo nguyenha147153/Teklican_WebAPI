@@ -2,9 +2,9 @@
 using Teklican.Application.Authentication.Common;
 using Teklican.Application.Common.Interfaces.Authentication;
 using Teklican.Application.Common.Interfaces.Persistence;
+using Teklican.Domain.Accounts;
 using Teklican.Domain.Common.Exceptions;
 using Teklican.Domain.Common.Exceptions.Authentication;
-using Teklican.Domain.Users;
 
 namespace Teklican.Application.Authentication.Queries.Login
 {

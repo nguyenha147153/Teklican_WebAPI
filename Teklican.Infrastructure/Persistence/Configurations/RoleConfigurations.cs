@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Teklican.Domain.Roles;
-using Teklican.Domain.Roles.ValueObjects;
 
 namespace Teklican.Infrastructure.Persistence.Configurations
 {
@@ -19,10 +18,9 @@ namespace Teklican.Infrastructure.Persistence.Configurations
             builder.HasKey(r => r.Id);
 
             builder.Property(r => r.Id)
-                .ValueGeneratedNever()
                 .HasConversion(
-                    r => r.Value,
-                    value => RoleId.Create(value));
+                    roleId => roleId.Value,
+                    value => new RoleId(value));
 
             builder.Property(r => r.Name).HasMaxLength(20);
         }

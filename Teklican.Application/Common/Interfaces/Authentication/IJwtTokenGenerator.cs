@@ -1,4 +1,4 @@
-﻿using Teklican.Domain.Users;
+﻿using Teklican.Domain.Accounts;
 
 namespace Teklican.Application.Common.Interfaces.Authentication
 {

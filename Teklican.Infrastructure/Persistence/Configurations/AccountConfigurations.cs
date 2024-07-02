@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Teklican.Domain.Accounts;
 using Teklican.Domain.Roles;
-using Teklican.Domain.Users;
-using Teklican.Domain.Users.ValueObjects;
 
 namespace Teklican.Infrastructure.Persistence.Configurations
 {
@@ -22,13 +21,13 @@ namespace Teklican.Infrastructure.Persistence.Configurations
             builder.Property(u => u.Id)
                .ValueGeneratedNever()
                .HasConversion(
-                   id => id.Value,
-                   value => AccountId.Create(value));
+                   accountId => accountId.Value,
+                   value => new AccountId(value));
 
             builder.HasOne<Role>()
-                .WithMany()
-                .HasForeignKey(u => u.RoleId)
-                .IsRequired();
+             .WithMany()
+             .HasForeignKey(u => u.RoleId)
+             .IsRequired();
 
             builder.Property(u => u.FirstName).HasMaxLength(50);
 

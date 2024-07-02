@@ -5,7 +5,7 @@ using System.Security.Claims;
 using System.Text;
 using Teklican.Application.Common.Interfaces.Authentication;
 using Teklican.Application.Common.Interfaces.Services;
-using Teklican.Domain.Users;
+using Teklican.Domain.Accounts;
 
 namespace Teklican.Infrastructure.Authentication
 {
