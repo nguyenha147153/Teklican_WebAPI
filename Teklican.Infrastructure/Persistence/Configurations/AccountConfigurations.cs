@@ -24,10 +24,15 @@ namespace Teklican.Infrastructure.Persistence.Configurations
                    accountId => accountId.Value,
                    value => new AccountId(value));
 
-            builder.HasOne<Role>()
+            builder.Property(r => r.RoleId)
+                .HasConversion(
+                    roleId => roleId.Value,
+                    value => new RoleId(value));
+
+            /*builder.HasOne<Role>()
              .WithMany()
              .HasForeignKey(u => u.RoleId)
-             .IsRequired();
+             .IsRequired();*/
 
             builder.Property(u => u.FirstName).HasMaxLength(50);
 

@@ -25,10 +25,15 @@ namespace Teklican.Infrastructure.Persistence.Configurations
                     productId => productId.Value,
                     value => new ProductId(value));
 
-            builder.HasOne<Category>()
+            builder.Property(p => p.CategoryId)
+                .HasConversion(
+                    categoryId => categoryId.Value,
+                    value => new CategoryId(value));
+
+            /*builder.HasOne<Category>()
                .WithMany()
                .HasForeignKey(c => c.CategoryId)
-               .IsRequired();
+               .IsRequired();*/
 
             builder.Property(p => p.Sku)
                 .HasConversion(

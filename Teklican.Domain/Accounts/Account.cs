@@ -4,7 +4,7 @@ namespace Teklican.Domain.Accounts
 {
     public sealed class Account 
     {
-        public AccountId Id { get; private set; }
+        public AccountId Id { get; private set; } = null!;
         public RoleId RoleId { get; private set; } = null!;
         public string FirstName { get; private set; } = null!;
         public string LastName { get; private set; } = null!;

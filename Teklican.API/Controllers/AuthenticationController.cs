@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Teklican.Application.Authentication.Commands.Register;
 using Teklican.Application.Authentication.Common;
 using Teklican.Application.Authentication.Queries.Login;
+using Teklican.Application.Wrapper;
 using Teklican.Contracts.Authentication;
 
 namespace Teklican.API.Controllers
@@ -27,8 +28,8 @@ namespace Teklican.API.Controllers
         {
             var command = _mapper.Map<RegisterCommand>(request);
             AuthenticationResult authResult = await _mediator.Send(command);
-
-            return Ok(_mapper.Map<AuthenticationResponse>(authResult));
+            var response = _mapper.Map<AuthenticationResponse>(authResult);
+            return Ok(new ResponseException<AuthenticationResponse>(response,"Đăng kí thành công"));
         }
 
         [HttpPost("login")]
@@ -36,8 +37,8 @@ namespace Teklican.API.Controllers
         {
             var query = _mapper.Map<LoginQuery>(request); 
             AuthenticationResult authResult = await _mediator.Send(query);
-
-            return Ok(_mapper.Map<AuthenticationResponse>(authResult));
+            var response = _mapper.Map<AuthenticationResponse>(authResult);
+            return Ok(new ResponseException<AuthenticationResponse>(response, "Đăng nhập thành công"));
         }
     }
 }

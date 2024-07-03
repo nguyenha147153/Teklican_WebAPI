@@ -18,7 +18,7 @@ namespace Teklican.Infrastructure.Persistence.Configurations
             builder.HasKey(c => c.Id);
 
             builder.Property(c => c.Id)
-                .ValueGeneratedNever()
+                .ValueGeneratedOnAdd()
                 .HasConversion(
                     categoryId => categoryId.Value,
                     value => new CategoryId(value));

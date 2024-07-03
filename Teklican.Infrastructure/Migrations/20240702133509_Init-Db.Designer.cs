@@ -12,8 +12,8 @@ using Teklican.Infrastructure.Persistence;
 namespace Teklican.Infrastructure.Migrations
 {
     [DbContext(typeof(TeklicanDbContext))]
-    [Migration("20240702095743_Fix-Db-1.0")]
-    partial class FixDb10
+    [Migration("20240702133509_Init-Db")]
+    partial class InitDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,23 +60,24 @@ namespace Teklican.Infrastructure.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<Guid>("RoleId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("Email")
                         .IsUnique();
 
-                    b.HasIndex("RoleId");
-
                     b.ToTable("Accounts", (string)null);
                 });
 
             modelBuilder.Entity("Teklican.Domain.Categories.Category", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -103,8 +104,6 @@ namespace Teklican.Infrastructure.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.HasIndex("ProductId");
-
                     b.ToTable("LineItems", (string)null);
                 });
 
@@ -124,8 +123,6 @@ namespace Teklican.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountId");
-
                     b.ToTable("Orders", (string)null);
                 });
 
@@ -134,8 +131,8 @@ namespace Teklican.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CategoryId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasMaxLength(150)
@@ -165,15 +162,16 @@ namespace Teklican.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
-
                     b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("Teklican.Domain.Roles.Role", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -185,26 +183,11 @@ namespace Teklican.Infrastructure.Migrations
                     b.ToTable("Roles", (string)null);
                 });
 
-            modelBuilder.Entity("Teklican.Domain.Accounts.Account", b =>
-                {
-                    b.HasOne("Teklican.Domain.Roles.Role", null)
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Teklican.Domain.Orders.Entities.LineItem", b =>
                 {
                     b.HasOne("Teklican.Domain.Orders.Order", null)
                         .WithMany("LineItems")
                         .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Teklican.Domain.Products.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -232,23 +215,8 @@ namespace Teklican.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Teklican.Domain.Orders.Order", b =>
-                {
-                    b.HasOne("Teklican.Domain.Accounts.Account", null)
-                        .WithMany()
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Teklican.Domain.Products.Product", b =>
                 {
-                    b.HasOne("Teklican.Domain.Categories.Category", null)
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.OwnsOne("Teklican.Domain.Products.ValueObjects.Money", "Price", b1 =>
                         {
                             b1.Property<Guid>("ProductId")

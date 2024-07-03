@@ -20,7 +20,7 @@ namespace Teklican.API.Middleware
         {
             try
             {
-                await next(context);
+                await next(context);    
             }
             catch (Exception ex)
             {

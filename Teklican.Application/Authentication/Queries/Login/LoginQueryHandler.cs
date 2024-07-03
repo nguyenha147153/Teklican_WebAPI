@@ -28,6 +28,7 @@ namespace Teklican.Application.Authentication.Queries.Login
             {
                 throw new EmaiInvalidException();
             }
+
             //2.Kiem tra password
             if (user.Password != query.Password)
             {

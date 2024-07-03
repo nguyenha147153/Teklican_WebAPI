@@ -31,7 +31,7 @@ namespace Teklican.Application.Authentication.Commands.Register
             }
             //2. Tao user
             var user = Account.Create(
-                new RoleId(new Guid("00000000-0000-0000-0000-000000000000")),
+                new RoleId(2),
                 command.FirstName,
                 command.LastName,
                 command.Email,

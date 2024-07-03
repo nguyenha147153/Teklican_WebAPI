@@ -24,10 +24,16 @@ namespace Teklican.Infrastructure.Persistence.Configurations
                     order => order.Value,
                     value => new OrderId(value));
 
-            builder.HasOne<Account>()
+            builder.Property(u => u.AccountId)
+               .ValueGeneratedNever()
+               .HasConversion(
+                   accountId => accountId.Value,
+                   value => new AccountId(value));
+
+            /*builder.HasOne<Account>()
                 .WithMany()
                 .HasForeignKey(o => o.AccountId)
-                .IsRequired();
+                .IsRequired();*/
 
             builder.HasMany(o => o.LineItems)
                 .WithOne()

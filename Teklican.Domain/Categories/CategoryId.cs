@@ -1,4 +1,4 @@
 ﻿namespace Teklican.Domain.Categories
 {
-    public record CategoryId(Guid Value);
+    public record CategoryId(int Value);
 }

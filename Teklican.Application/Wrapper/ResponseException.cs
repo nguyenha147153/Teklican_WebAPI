@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Http;
 
 namespace Teklican.Application.Wrapper
 {
@@ -16,6 +12,7 @@ namespace Teklican.Application.Wrapper
             Succeeded = true;
             Message = message;
             Data = data;
+            StatusCode = StatusCodes.Status200OK;
         }
         public ResponseException(string message)
         {

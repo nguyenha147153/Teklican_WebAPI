@@ -23,7 +23,7 @@ namespace Teklican.Infrastructure.Persistence
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=192.168.1.39,1434;Database=Teklican_WebAPI;User Id=sa;Password=123456;TrustServerCertificate=True;");
+                optionsBuilder.UseSqlServer("Server=192.168.1.39,1434;Database=Teklican;User Id=sa;Password=123456;TrustServerCertificate=True;");
             }
         }
 

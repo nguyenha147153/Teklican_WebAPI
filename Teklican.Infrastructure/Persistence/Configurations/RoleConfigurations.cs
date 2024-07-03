@@ -18,6 +18,7 @@ namespace Teklican.Infrastructure.Persistence.Configurations
             builder.HasKey(r => r.Id);
 
             builder.Property(r => r.Id)
+                .ValueGeneratedOnAdd()
                 .HasConversion(
                     roleId => roleId.Value,
                     value => new RoleId(value));
