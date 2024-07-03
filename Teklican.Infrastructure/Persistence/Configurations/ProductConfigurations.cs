@@ -42,7 +42,7 @@ namespace Teklican.Infrastructure.Persistence.Configurations
 
             builder.OwnsOne(p => p.Price, priceBuilder =>
             {
-                priceBuilder.Property(m => m.Currency).HasMaxLength(3);
+                priceBuilder.Property(m => m.Currency).HasMaxLength(3).HasDefaultValue("VND");
             });
 
             builder.Property(p => p.Name).HasMaxLength(50);

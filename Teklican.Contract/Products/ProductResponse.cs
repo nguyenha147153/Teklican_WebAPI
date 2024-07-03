@@ -1,12 +1,10 @@
 ﻿namespace Teklican.Contracts.Products
 {
     public record ProductResponse(
-        string Id,
+        Guid Id,
         string Name,
         string Description,
-        decimal Price,
+        decimal Amount,
         string Status,
-        string CategoryId,
-        string Image,
-        int Tax);
+        int CategoryId);
 }

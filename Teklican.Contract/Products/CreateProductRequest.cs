@@ -3,8 +3,8 @@
     public record CreateProductRequest(
         string Name,
         string Description,
-        decimal Price,
-        string CategoryId,
-        string Image,
-        int Tax);
+        decimal Amount,
+        string Sku,
+        string Status,
+        int CategoryId);
 }

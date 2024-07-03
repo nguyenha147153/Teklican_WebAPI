@@ -1,10 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation;
 using MediatR;
-using Teklican.Application.Authentication.Commands.Register;
-using Teklican.Application.Authentication.Common;
-using Teklican.Application.Common.Behaviors;
-using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using Teklican.Application.Common.Behaviors;
 
 namespace Teklican.Application
 {

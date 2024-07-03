@@ -40,6 +40,7 @@ namespace Teklican.Infrastructure
             services.AddDbContext<TeklicanDbContext>();
 
             services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
 
             return services;
         }

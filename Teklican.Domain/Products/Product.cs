@@ -9,64 +9,60 @@ namespace Teklican.Domain.Products
     {
         public ProductId Id { get; private set; } = null!;
         public string Name { get; private set; } = null!;
-        public string Alias { get; private set; } = null!;
+       /* public string Alias { get; private set; } = null!;
+        public string Content { get; private set; }*/
         public string? Description { get; private set; }
-        public string Content { get; private set; }
         public Money Price { get; private set; } = null!;
-        public decimal? PromotionPrice { get; private set;}
-        public Sku Sku { get; private set; } = null!;
+        /*public decimal? PromotionPrice { get; private set;}*/
+        public Sku? Sku { get; private set; } = null!;
         public string? Status { get; private set; }
         public CategoryId CategoryId { get; private set; } = null!;
         public string? Image {  get; private set; }
-        public XElement MoreImages { get; private set; }
-        public int Tax {  get; private set; }
-        public double OldPrice { get; private set; }
+        /*public XElement MoreImages { get; private set; }*/
+        public int? Tax {  get; private set; }
+        public double? OldPrice { get; private set; }
         public Product(
             ProductId ProductId,
             string name,
             string decription,
-            Money price,
-            Sku sku,
+            decimal amount,
+            string sku,
             string status,
             CategoryId categoryId,
             string image,
-            int tax,
-            double oldPrice)
+            int tax)
         {
             Id = ProductId;
             Name = name;
             Description = decription;
-            Price = price;
-            Sku = sku;
+            Price = new Money("VND",amount);
+            Sku = Sku.Create(sku);
             Status = status;
             CategoryId = categoryId;
             Image = image;
             Tax = tax;
-            OldPrice = oldPrice;
         }
 
         public static Product Create(
             string name,
             string decription,
-            Money price,
-            Sku sku,
+            decimal amount,
+            string sku,
             string status,
-            CategoryId categoryId,
+            int categoryId,
             string image,
-            int tax,
-            double oldPrice)
+            int tax)
         {
             return new(
                 new ProductId(Guid.NewGuid()),
                 name,
                 decription,
-                price,
+                amount,
                 sku,
                 status,
-                categoryId,
+                new CategoryId(categoryId),
                 image,
-                tax,
-                oldPrice);
+                tax);
         }
 
         public Product()
