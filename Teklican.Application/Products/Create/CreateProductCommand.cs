@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Teklican.Application.Authentication.Common;
 using Teklican.Application.Products.Common;
 
 namespace Teklican.Application.Products.Create
@@ -8,6 +7,7 @@ namespace Teklican.Application.Products.Create
         string Name,
         string Description,
         decimal Amount,
+        string Current,
         string Sku,
         string Status,
         int CategoryId

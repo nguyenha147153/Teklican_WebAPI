@@ -2,19 +2,19 @@
 
 namespace Teklican.Application.Wrapper
 {
-    public class ResponseException<T>
+    public class Response<T>
     {
-        public ResponseException()
+        public Response()
         {
         }
-        public ResponseException(T data, string message)
+        public Response(T data, string message)
         {
             Succeeded = true;
             Message = message;
             Data = data;
             StatusCode = StatusCodes.Status200OK;
         }
-        public ResponseException(string message)
+        public Response(string message)
         {
             Succeeded = false;
             Message = message;

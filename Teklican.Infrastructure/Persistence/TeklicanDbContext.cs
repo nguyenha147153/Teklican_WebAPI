@@ -12,11 +12,11 @@ namespace Teklican.Infrastructure.Persistence
     {
        
         public DbSet<Order> Orders { get; set; } = null!;
-        public DbSet<LineItem> LineItems { get; set; }
+        public DbSet<LineItem> LineItems { get; set; } = null!;
         public DbSet<Product> Products { get; set; } = null!;
         public DbSet<Account> Accounts { get; set; } = null!;
-        public DbSet<Role> Roles { get; set; }
-        public DbSet<Category> Categories { get; set; }
+        public DbSet<Role> Roles { get; set; } = null!;
+        public DbSet<Category> Categories { get; set; } = null!;
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

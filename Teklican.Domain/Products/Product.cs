@@ -25,44 +25,36 @@ namespace Teklican.Domain.Products
             ProductId ProductId,
             string name,
             string decription,
-            decimal amount,
-            string sku,
+            Money price,
+            Sku sku,
             string status,
-            CategoryId categoryId,
-            string image,
-            int tax)
+            CategoryId categoryId)
         {
             Id = ProductId;
             Name = name;
             Description = decription;
-            Price = new Money("VND",amount);
-            Sku = Sku.Create(sku);
+            Price = price;
+            Sku = sku;
             Status = status;
             CategoryId = categoryId;
-            Image = image;
-            Tax = tax;
         }
 
         public static Product Create(
             string name,
             string decription,
-            decimal amount,
-            string sku,
+            Money price,
+            Sku sku,
             string status,
-            int categoryId,
-            string image,
-            int tax)
+            CategoryId categoryId)
         {
             return new(
                 new ProductId(Guid.NewGuid()),
                 name,
                 decription,
-                amount,
+                price,
                 sku,
                 status,
-                new CategoryId(categoryId),
-                image,
-                tax);
+                categoryId);
         }
 
         public Product()

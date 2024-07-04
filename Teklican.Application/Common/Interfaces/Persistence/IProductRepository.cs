@@ -4,10 +4,12 @@ namespace Teklican.Application.Common.Interfaces.Persistence
 {
     public interface IProductRepository
     {
-        IEnumerable<Product> GetAll();
-        Product? GetById(ProductId id);
-        bool Create(Product product);
-        bool Update(Product product);
-        bool Delete(ProductId id);
-    }
+        Task<IEnumerable<Product>> GetAllAsync();
+        Task<Product?> GetByIdAsync(ProductId id);
+        void Add(Product product);
+        void Update(Product product);
+        void Delete(Product product);
+        IQueryable<Product> GetQueryable();
+        Task SaveChangesAsync();
+    } 
 }

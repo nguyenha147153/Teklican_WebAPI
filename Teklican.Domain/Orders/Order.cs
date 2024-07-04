@@ -9,7 +9,7 @@ namespace Teklican.Domain.Orders
     {
         private readonly HashSet<LineItem> _lineItems = new();
         public OrderId Id { get; private set; } = null!;
-        public AccountId AccountId { get; private set; }
+        public AccountId AccountId { get; private set; } = null!;
         public decimal Total { get; private set; }
         public DateTime CreatedDate { get; private set; }
 

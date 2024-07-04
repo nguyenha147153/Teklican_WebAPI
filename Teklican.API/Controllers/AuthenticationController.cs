@@ -29,7 +29,7 @@ namespace Teklican.API.Controllers
             var command = _mapper.Map<RegisterCommand>(request);
             AuthenticationResult authResult = await _mediator.Send(command);
             var response = _mapper.Map<AuthenticationResponse>(authResult);
-            return Ok(new ResponseException<AuthenticationResponse>(response,"Đăng kí thành công"));
+            return Ok(new Response<AuthenticationResponse>(response,"Đăng kí thành công"));
         }
 
         [HttpPost("login")]
@@ -38,7 +38,7 @@ namespace Teklican.API.Controllers
             var query = _mapper.Map<LoginQuery>(request); 
             AuthenticationResult authResult = await _mediator.Send(query);
             var response = _mapper.Map<AuthenticationResponse>(authResult);
-            return Ok(new ResponseException<AuthenticationResponse>(response, "Đăng nhập thành công"));
+            return Ok(new Response<AuthenticationResponse>(response, "Đăng nhập thành công"));
         }
     }
 }

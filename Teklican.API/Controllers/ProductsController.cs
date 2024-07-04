@@ -28,7 +28,7 @@ namespace Teklican.API.Controllers
             var command = _mapper.Map<CreateProductCommand>(request);
             ProductResult result = await _mediator.Send(command);
             var response = _mapper.Map<ProductResponse>(result);
-            return Ok(new ResponseException<ProductResponse>(response,"Thêm thành công"));
+            return Ok(new Response<ProductResponse>(response,"Thêm thành công"));
         }
     }
 }

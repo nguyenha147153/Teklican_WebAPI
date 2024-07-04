@@ -12,63 +12,39 @@ namespace Teklican.Infrastructure.Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        public IEnumerable<Product> GetAll()
+        public async Task<IEnumerable<Product>> GetAllAsync()
         {
-            var listProduct = _dbContext.Products;
-            return listProduct;
+            return await _dbContext.Products.ToListAsync();
         }
 
-        public Product? GetById(ProductId id)
+        public async Task<Product?> GetByIdAsync(ProductId id)
         {
-            var product = _dbContext.Products.Find(id.Value);
-            return product;
+            return await _dbContext.Products.FindAsync(id.Value);
         }
 
-        public bool Create(Product product)
+        public void Add(Product product)
         {
-            try
-            {
-                _dbContext.Products.Add(product);
-                _dbContext.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            _dbContext.Products.Add(product);
         }
 
-        public bool Update(Product product)
+        public void Update(Product product)
         {
-            try
-            {
-                _dbContext.Products.Update(product);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            _dbContext.Update(product);
         }
 
-        public bool Delete(ProductId id)
+        public void Delete(Product product)
         {
-            try
-            {
-                var product = _dbContext.Products.Find(id.Value);
+            _dbContext.Remove(product);
+        }
 
-                if(product is null) 
-                {
-                    return false;
-                }
+        public IQueryable<Product> GetQueryable()
+        {
+            return _dbContext.Products.AsQueryable();
+        }
 
-                _dbContext.Products.Remove(product);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+        public Task SaveChangesAsync()
+        {
+            return _dbContext.SaveChangesAsync();
         }
     }
 }

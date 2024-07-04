@@ -35,7 +35,7 @@ namespace Teklican.Infrastructure.Persistence.Configurations
                .HasForeignKey(c => c.CategoryId)
                .IsRequired();*/
 
-            builder.Property(p => p.Sku)
+            builder.Property(p => p.Sku!)
                 .HasConversion(
                     sku => sku.Value,
                     value => Sku.Create(value)!);
