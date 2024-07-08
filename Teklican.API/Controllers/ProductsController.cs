@@ -1,16 +1,18 @@
-﻿using Mapster;
-using MapsterMapper;
+﻿using MapsterMapper;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Teklican.Application.Products.Common;
 using Teklican.Application.Products.Create;
+using Teklican.Application.Products.Delete;
+using Teklican.Application.Products.GetAll;
+using Teklican.Application.Products.GetById;
+using Teklican.Application.Products.Update;
 using Teklican.Application.Wrapper;
 using Teklican.Contracts.Products;
 
 namespace Teklican.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("controller")]
     [ApiController]
     public class ProductsController : ControllerBase
     {
@@ -21,14 +23,51 @@ namespace Teklican.API.Controllers
             _mediator = mediator;
             _mapper = mapper;
         }
+
+        [HttpGet]
+        [Route("getall")]
+        public async Task<IActionResult> GetAll()
+        {
+            var query = new GetAllQuery();
+
+            return Ok(await _mediator.Send(query));
+        }
+
+        [HttpGet]
+        [Route("getbyid/{id}")]
+        public async Task<IActionResult> GetById(Guid id)
+        {
+            var query = new GetByIdQuery(id);
+
+            return Ok(await _mediator.Send(query));
+        }
+
         [HttpPost]
         [Route("create")]
         public async Task<IActionResult> CreateProduct(CreateProductRequest request)
         {
             var command = _mapper.Map<CreateProductCommand>(request);
-            ProductResult result = await _mediator.Send(command);
-            var response = _mapper.Map<ProductResponse>(result);
-            return Ok(new Response<ProductResponse>(response,"Thêm thành công"));
+
+            return Ok(await _mediator.Send(command));
         }
+
+        [HttpPut]
+        [Route("update")]
+        public async Task<IActionResult> UpdateProduct(UpdateProductRequest request)
+        {
+            var command = _mapper.Map<UpdateProductCommand>(request);
+
+            return Ok(await _mediator.Send(command));
+        }
+
+        [HttpDelete]
+        [Route("delete")]
+        public async Task<IActionResult> DeleteProduct(Guid id)
+        {
+            var command = new DeleteProductCommand(id);
+
+            return Ok(await _mediator.Send(command));
+        }
+
     }
 }

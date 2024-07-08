@@ -19,8 +19,8 @@ namespace Teklican.Infrastructure.Persistence.Repositories
 
         public async Task<Product?> GetByIdAsync(ProductId id)
         {
-            return await _dbContext.Products.FindAsync(id.Value);
-        }
+            return await _dbContext.Products.FindAsync(id);
+        }   
 
         public void Add(Product product)
         {
@@ -42,9 +42,9 @@ namespace Teklican.Infrastructure.Persistence.Repositories
             return _dbContext.Products.AsQueryable();
         }
 
-        public Task SaveChangesAsync()
+        public Task SaveChangesAsync(CancellationToken cancellationToken)
         {
-            return _dbContext.SaveChangesAsync();
+            return _dbContext.SaveChangesAsync(cancellationToken);
         }
     }
 }

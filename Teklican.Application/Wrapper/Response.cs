@@ -19,6 +19,7 @@ namespace Teklican.Application.Wrapper
             Succeeded = false;
             Message = message;
         }
+
         public bool Succeeded { get; set; }
         public string Message { get; set; } = null!;
         public List<string> Errors { get; set; } = null!;

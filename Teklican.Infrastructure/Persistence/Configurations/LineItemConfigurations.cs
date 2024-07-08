@@ -30,9 +30,9 @@ namespace Teklican.Infrastructure.Persistence.Configurations
                     productId => productId.Value,
                     value => new ProductId(value));
 
-            /*builder.HasOne<Product>()
+            builder.HasOne<Product>()
                .WithMany()
-               .HasForeignKey(li => li.ProductId);*/
+               .HasForeignKey(li => li.ProductId);
 
             builder.OwnsOne(li => li.Price);
 

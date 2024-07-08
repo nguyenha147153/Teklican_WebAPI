@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Teklican.Domain.Accounts;
+using Teklican.Domain.Cart;
+using Teklican.Domain.Cart.Entities;
 using Teklican.Domain.Categories;
 using Teklican.Domain.Orders;
 using Teklican.Domain.Orders.Entities;
@@ -17,6 +19,8 @@ namespace Teklican.Infrastructure.Persistence
         public DbSet<Account> Accounts { get; set; } = null!;
         public DbSet<Role> Roles { get; set; } = null!;
         public DbSet<Category> Categories { get; set; } = null!;
+        public DbSet<Cart> Carts { get; set; } = null!;
+        public DbSet<CartItem> CartItems { get; set; } = null!;
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

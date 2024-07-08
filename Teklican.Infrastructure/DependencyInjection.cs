@@ -42,6 +42,9 @@ namespace Teklican.Infrastructure
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<ILineItemsRepository, LineItemsRepository>();
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             return services;
         }

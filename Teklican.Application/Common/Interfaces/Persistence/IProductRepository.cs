@@ -10,6 +10,6 @@ namespace Teklican.Application.Common.Interfaces.Persistence
         void Update(Product product);
         void Delete(Product product);
         IQueryable<Product> GetQueryable();
-        Task SaveChangesAsync();
+        Task SaveChangesAsync(CancellationToken cancellationToken);
     } 
 }

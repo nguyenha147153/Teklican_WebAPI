@@ -1,19 +1,16 @@
 ﻿using Teklican.Domain.Accounts;
 using Teklican.Domain.Orders.Entities;
-using Teklican.Domain.Products;
-using Teklican.Domain.Products.ValueObjects;
 
 namespace Teklican.Domain.Orders
 {
     public sealed class Order 
     {
-        private readonly HashSet<LineItem> _lineItems = new();
+        private readonly List<LineItem> _lineItems = new();
         public OrderId Id { get; private set; } = null!;
         public AccountId AccountId { get; private set; } = null!;
         public decimal Total { get; private set; }
         public DateTime CreatedDate { get; private set; }
-
-        public IReadOnlyList<LineItem> LineItems => _lineItems.ToList();
+        public IReadOnlyList<LineItem> LineItems => _lineItems.AsReadOnly();
 
         public Order(
             OrderId orderId,
@@ -30,7 +27,7 @@ namespace Teklican.Domain.Orders
                 accountId);
         }
         
-        public void Add(ProductId productId, Money price)
+      /*  public void Add(ProductId productId, Money price)
         {
             var lineItem = new LineItem(
                 new LineItemId(Guid.NewGuid()),
@@ -40,7 +37,7 @@ namespace Teklican.Domain.Orders
                 );
 
             _lineItems.Add(lineItem);
-        }
+        }*/
         private Order()
         {
         }

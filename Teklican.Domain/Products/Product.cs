@@ -57,6 +57,22 @@ namespace Teklican.Domain.Products
                 categoryId);
         }
 
+        public void Update(
+            string name,
+            string decription,
+            Money price,
+            Sku sku,
+            string status,
+            CategoryId categoryId)
+        {
+            Name = name;
+            Description = decription;
+            Price = price;
+            Sku = sku;
+            Status = status;
+            CategoryId = categoryId;
+        }
+
         public Product()
         {
         }

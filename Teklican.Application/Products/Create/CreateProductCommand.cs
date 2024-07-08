@@ -1,5 +1,7 @@
 ﻿using MediatR;
 using Teklican.Application.Products.Common;
+using Teklican.Application.Wrapper;
+using Teklican.Domain.Products;
 
 namespace Teklican.Application.Products.Create
 {
@@ -11,5 +13,5 @@ namespace Teklican.Application.Products.Create
         string Sku,
         string Status,
         int CategoryId
-        ) : IRequest<ProductResult>;
+        ) : IRequest<Response<Product>>;
 }

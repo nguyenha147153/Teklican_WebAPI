@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Teklican.Infrastructure.Persistence;
 
@@ -11,9 +12,11 @@ using Teklican.Infrastructure.Persistence;
 namespace Teklican.Infrastructure.Migrations
 {
     [DbContext(typeof(TeklicanDbContext))]
-    partial class TeklicanDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240708095830_Add-Cart")]
+    partial class AddCart
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

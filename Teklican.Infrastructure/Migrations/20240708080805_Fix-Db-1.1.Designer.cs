@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Teklican.Infrastructure.Persistence;
 
@@ -11,9 +12,11 @@ using Teklican.Infrastructure.Persistence;
 namespace Teklican.Infrastructure.Migrations
 {
     [DbContext(typeof(TeklicanDbContext))]
-    partial class TeklicanDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240708080805_Fix-Db-1.1")]
+    partial class FixDb11
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,45 +69,6 @@ namespace Teklican.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("Accounts", (string)null);
-                });
-
-            modelBuilder.Entity("Teklican.Domain.Cart.Cart", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AccountId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Cart", (string)null);
-                });
-
-            modelBuilder.Entity("Teklican.Domain.Cart.Entities.CartItem", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CartId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CartId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("CartItem", (string)null);
                 });
 
             modelBuilder.Entity("Teklican.Domain.Categories.Category", b =>
@@ -256,21 +220,6 @@ namespace Teklican.Infrastructure.Migrations
                     b.ToTable("Roles", (string)null);
                 });
 
-            modelBuilder.Entity("Teklican.Domain.Cart.Entities.CartItem", b =>
-                {
-                    b.HasOne("Teklican.Domain.Cart.Cart", null)
-                        .WithMany("CartItems")
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Teklican.Domain.Products.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Teklican.Domain.Orders.Entities.LineItem", b =>
                 {
                     b.HasOne("Teklican.Domain.Orders.Order", null)
@@ -342,11 +291,6 @@ namespace Teklican.Infrastructure.Migrations
 
                     b.Navigation("Price")
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Teklican.Domain.Cart.Cart", b =>
-                {
-                    b.Navigation("CartItems");
                 });
 
             modelBuilder.Entity("Teklican.Domain.Categories.Category", b =>
