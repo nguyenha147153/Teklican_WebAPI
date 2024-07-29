@@ -10,11 +10,12 @@ namespace Teklican.Infrastructure.Persistence.Repositories
 
         public override async Task<Order?> GetByIdAsync(Guid id)
         {
-            return await _context.Orders
-                .Include(x=>x.LineItems)
-                .AsNoTracking()
-                .AsSplitQuery()
-                .SingleOrDefaultAsync(x=>x.Id == new OrderId(id));
+                return await _context.Orders
+                  .Include(x => x.LineItems)
+                    .ThenInclude(x => x.Product)
+                  .AsNoTracking()
+                  .AsSplitQuery()
+                  .SingleOrDefaultAsync(x => x.Id == new OrderId(id));
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Teklican.Domain.Orders.Entities
         public Money Price { get; private set; } = null!;
         public int Quantity { get; private set; }
         public decimal SubTotal { get; private set; }
-        /*public Product Product { get; private set; } = null!;*/
+        public Product Product { get; private set; } = null!;
 
         internal LineItem(
             LineItemId lineItemId,

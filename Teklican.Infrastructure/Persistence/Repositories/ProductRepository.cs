@@ -20,7 +20,12 @@ namespace Teklican.Infrastructure.Persistence.Repositories
         public async Task<Product?> GetByIdAsync(ProductId id)
         {
             return await _dbContext.Products.FindAsync(id);
-        }   
+        }
+
+        public bool HasProduct(ProductId id)
+        {
+            return _dbContext.Products.Count(x=>x.Id == id) == 1;
+        }
 
         public void Add(Product product)
         {

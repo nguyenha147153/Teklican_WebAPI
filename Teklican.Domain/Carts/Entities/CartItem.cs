@@ -1,6 +1,6 @@
 ﻿using Teklican.Domain.Products;
 
-namespace Teklican.Domain.Cart.Entities
+namespace Teklican.Domain.Carts.Entities
 {
     public sealed class CartItem
     {
@@ -8,7 +8,7 @@ namespace Teklican.Domain.Cart.Entities
         public CartId CartId { get; set; } = null!;
         public ProductId ProductId { get; set; } = null!;
         public int Quantity { get; set; }
-       /* public Product Product { get; set; } = null!;*/
+        public Product Product { get; set; } = null!;
 
         internal CartItem(
            CartItemId cartItemId,

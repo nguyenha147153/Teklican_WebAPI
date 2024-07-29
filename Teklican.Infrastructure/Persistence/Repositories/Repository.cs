@@ -30,6 +30,17 @@ namespace Teklican.Infrastructure.Persistence.Repositories
             return await query.ToListAsync();
         }
 
+        public virtual async Task<IEnumerable<TEntity>> ListIncludeAsync(Expression<Func<TEntity, bool>> expression, params Expression<Func<TEntity, object>>[] includeProperties)
+        {
+            var query = _context.Set<TEntity>().AsNoTracking().Where(expression);
+
+            foreach (var includeProperty in includeProperties)
+            {
+                query = query.Include(includeProperty);
+            }
+
+            return await query.ToListAsync();
+        }
 
         public virtual async Task<TEntity?> GetByIdAsync(Guid id)
         {

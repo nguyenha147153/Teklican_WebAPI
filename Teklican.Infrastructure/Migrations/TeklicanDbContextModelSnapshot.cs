@@ -285,7 +285,7 @@ namespace Teklican.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("Teklican.Domain.Products.ValueObjects.Money", "Price", b1 =>
+                    b.OwnsOne("Teklican.Domain.Orders.Entities.LineItem.Price#Teklican.Domain.Products.ValueObjects.Money", "Price", b1 =>
                         {
                             b1.Property<Guid>("LineItemId")
                                 .HasColumnType("uniqueidentifier");
@@ -299,7 +299,7 @@ namespace Teklican.Infrastructure.Migrations
 
                             b1.HasKey("LineItemId");
 
-                            b1.ToTable("LineItems");
+                            b1.ToTable("LineItems", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("LineItemId");
@@ -317,7 +317,7 @@ namespace Teklican.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("Teklican.Domain.Products.ValueObjects.Money", "Price", b1 =>
+                    b.OwnsOne("Teklican.Domain.Products.Product.Price#Teklican.Domain.Products.ValueObjects.Money", "Price", b1 =>
                         {
                             b1.Property<Guid>("ProductId")
                                 .HasColumnType("uniqueidentifier");
@@ -334,7 +334,7 @@ namespace Teklican.Infrastructure.Migrations
 
                             b1.HasKey("ProductId");
 
-                            b1.ToTable("Products");
+                            b1.ToTable("Products", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("ProductId");

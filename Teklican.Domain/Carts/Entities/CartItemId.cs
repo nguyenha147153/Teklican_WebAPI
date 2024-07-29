@@ -1,4 +1,4 @@
-﻿namespace Teklican.Domain.Cart.Entities
+﻿namespace Teklican.Domain.Carts.Entities
 {
     public record CartItemId(Guid Value);
 }

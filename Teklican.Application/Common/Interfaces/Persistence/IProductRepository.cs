@@ -6,6 +6,7 @@ namespace Teklican.Application.Common.Interfaces.Persistence
     {
         Task<IEnumerable<Product>> GetAllAsync();
         Task<Product?> GetByIdAsync(ProductId id);
+        bool HasProduct(ProductId id);
         void Add(Product product);
         void Update(Product product);
         void Delete(Product product);

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Teklican.Domain.Accounts;
-using Teklican.Domain.Cart;
+using Teklican.Domain.Carts;
 
 namespace Teklican.Infrastructure.Persistence.Configurations
 {

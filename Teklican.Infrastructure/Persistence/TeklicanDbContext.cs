@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Teklican.Domain.Accounts;
-using Teklican.Domain.Cart;
-using Teklican.Domain.Cart.Entities;
+using Teklican.Domain.Carts;
+using Teklican.Domain.Carts.Entities;
 using Teklican.Domain.Categories;
 using Teklican.Domain.Orders;
 using Teklican.Domain.Orders.Entities;
@@ -27,7 +27,7 @@ namespace Teklican.Infrastructure.Persistence
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=192.168.1.39,1434;Database=Teklican;User Id=sa;Password=123456;TrustServerCertificate=True;");
+                optionsBuilder.UseSqlServer("Server=MSI;Database=Teklican;User Id=sa;Password=123456;TrustServerCertificate=True;");
             }
         }
 

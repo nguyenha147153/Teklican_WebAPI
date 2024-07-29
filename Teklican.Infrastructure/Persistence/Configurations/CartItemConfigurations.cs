@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Teklican.Domain.Cart.Entities;
+using Teklican.Domain.Carts.Entities;
 using Teklican.Domain.Products;
 
 namespace Teklican.Infrastructure.Persistence.Configurations
@@ -35,9 +30,9 @@ namespace Teklican.Infrastructure.Persistence.Configurations
                    productId => productId.Value,
                    value => new ProductId(value));
 
-            builder.HasOne<Product>()
+            /*builder.HasOne<Product>()
                .WithMany()
-               .HasForeignKey(c => c.ProductId);
+               .HasForeignKey(c => c.ProductId);*/
         }
     }
 }
